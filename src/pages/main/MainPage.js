@@ -26,6 +26,26 @@ const HeaderMain = styled.div`
   }
 `;
 
+const GoStreching = styled.div`
+  h2 {
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 10px;
+  }
+  .button {
+    width: 333px;
+    height: 70px;
+    background-color: lightgray;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    p {
+      font-size: 16px;
+      padding: 0 10px;
+    }
+  }
+`;
+
 const MainPage = () => {
   const [todos, setTodos] = useState(["Buy groceries", "Clean the house"]);
   const [notes, setNotes] = useState([
@@ -63,6 +83,13 @@ const MainPage = () => {
         </TodoSection>
 
         {/* ------------------------------------------- */}
+
+        <GoStreching>
+          <h2>To Strech Body</h2>
+          <div className="button">
+            <p>Take a moment for your body!</p>
+          </div>
+        </GoStreching>
 
         <NoteSection>
           <div className="textWrap">

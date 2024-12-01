@@ -9,7 +9,7 @@ export const TodoSection = styled.div`
     align-items: center;
     margin: 30px 0 10px 0;
     h2 {
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 400;
     }
     p {
@@ -36,16 +36,16 @@ export const TodoItem = styled.div`
   }
 `;
 
-// 노트 스타일
 export const NoteSection = styled.div`
   margin-bottom: 30px;
+  overflow: hidden;
   .textWrap {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 30px 0 10px 0;
     h2 {
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 400;
     }
     p {
@@ -58,12 +58,13 @@ export const NoteSection = styled.div`
 export const NoteGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 120px;
   gap: 10px;
 `;
 
 export const NoteItem = styled.div`
-  width: 150px;
-  height: 150px;
+  width: 160px;
+  height: 120px;
   padding: 10px;
   border: 1px solid #dbdbdb;
   border-radius: 10px;
