@@ -2,15 +2,19 @@ import Wrapper from "../../components/Wrapper";
 import Header from "../../components/Header";
 import Button from "../../components/Button";
 import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 
-const ProfileImg = styled.div``;
+const ProfileImg = styled.div`
+  margin: 50px 0;
+`;
 const UserInfo = styled.div`
   margin: 30px 0;
 `;
 const InputField = styled.div`
   .h3 {
     font-size: 20px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
   }
 
   input {
@@ -24,11 +28,29 @@ const InputField = styled.div`
   }
 `;
 
+const BtnWrap = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 const CreateProfile = ({ text, BackBtn }) => {
   return (
     <Wrapper>
       <Header text="Create Profile" />
-      <ProfileImg></ProfileImg>
+      <ProfileImg>
+        <FontAwesomeIcon
+          icon={faUser}
+          style={{
+            width: "50px",
+            height: "50px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            margin: "0 auto",
+          }}
+        ></FontAwesomeIcon>
+      </ProfileImg>
       <UserInfo>
         <InputField>
           <div className="h3">Username</div>
@@ -43,10 +65,9 @@ const CreateProfile = ({ text, BackBtn }) => {
           <input type="date" />
         </InputField>
       </UserInfo>
-
-      <Button to="/main" style={{}}>
-        Continue
-      </Button>
+      <BtnWrap>
+        <Button to="/main">Continue</Button>
+      </BtnWrap>
     </Wrapper>
   );
 };
