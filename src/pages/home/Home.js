@@ -23,14 +23,28 @@ const Title = styled.div`
   font-size: 38px;
   font-weight: 600;
   margin-bottom: 20px;
+  span {
+    font-size: 34px;
+  }
 `;
 
 const Home = () => {
   return (
     <Wrapper>
       <InnerWrap>
-        <Title>Today, ON</Title>
-        <img src="/homebg.png" alt="homebg" />
+        <Title>
+          <span>오늘,</span> ON
+        </Title>
+        {/* <img src="/homebg.png" alt="homebg" /> */}
+        <div className="videoWrap" style={{ width: "300px", height: "300px" }}>
+          <video
+            src={`${process.env.PUBLIC_URL}/animation/animationHome.mp4`}
+            autoPlay
+            loop
+            muted
+            style={{ width: "310px", height: "310px", objectFit: "cover" }}
+          ></video>
+        </div>
         <div className="btn">
           <Button to="/main">Get Started</Button>
           <Button to="/profile">Create Profile</Button>

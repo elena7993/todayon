@@ -9,6 +9,9 @@ import {
 } from "../../components/styles/MainPageStyles";
 import Wrapper from "../../components/Wrapper";
 import styled from "styled-components";
+import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useNavigate } from "react-router-dom";
 
 const HeaderMain = styled.div`
   width: 100%;
@@ -27,6 +30,7 @@ const HeaderMain = styled.div`
 `;
 
 const GoStreching = styled.div`
+  position: relative;
   h2 {
     font-size: 20px;
     font-weight: 400;
@@ -39,9 +43,18 @@ const GoStreching = styled.div`
     border-radius: 15px;
     display: flex;
     align-items: center;
+    cursor: pointer;
+
     p {
       font-size: 16px;
       padding: 0 10px;
+    }
+  }
+  .anime {
+    img {
+      position: absolute;
+      top: 0;
+      right: 0;
     }
   }
 `;
@@ -54,6 +67,8 @@ const MainPage = () => {
     "Read a book",
   ]);
 
+  const navigate = useNavigate();
+
   return (
     <div>
       <Wrapper>
@@ -64,14 +79,16 @@ const MainPage = () => {
         <TodoSection>
           <div className="textWrap">
             <h2>ToDo</h2>
-            <p>SeeAll</p>
+            <p onClick={() => navigate("/todo")}>SeeAll</p>
           </div>
 
           {todos.length > 0 ? (
             todos.map((todo, index) => (
               <TodoItem key={index}>
                 {todo}
-                <span>|</span>
+                <span>
+                  <FontAwesomeIcon icon={faEllipsisVertical}></FontAwesomeIcon>
+                </span>
               </TodoItem>
             ))
           ) : (
@@ -86,15 +103,23 @@ const MainPage = () => {
 
         <GoStreching>
           <h2>To Strech Body</h2>
-          <div className="button">
+          <div className="button" onClick={() => navigate("/streching")}>
             <p>Take a moment for your body!</p>
+
+            <div className="anime">
+              <img
+                src={`${process.env.PUBLIC_URL}/animation/AnimationBtn.gif`}
+                alt="AnimationBtn"
+                style={{ width: "125px", height: "125px" }}
+              />
+            </div>
           </div>
         </GoStreching>
 
         <NoteSection>
           <div className="textWrap">
             <h2>Notes</h2>
-            <p>SeeAll</p>
+            <p onClick={() => navigate("/notes")}>SeeAll</p>
           </div>
           {notes.length > 0 ? (
             <NoteGrid>
