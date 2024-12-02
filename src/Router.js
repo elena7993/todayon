@@ -14,7 +14,7 @@ const Router = () => {
         <Route path="/profile" element={<CreateProfile />} />
         <Route path="/main" element={<MainPage />} />
         <Route path="/todo" element={<ToDoList />} />
-        <Route path="/streching" element={<BodyStreching />} />
+        <Route path="/stretching" element={<BodyStreching />} />
         <Route path="/notes" element={<MyNote />} />
       </Routes>
     </HashRouter>
