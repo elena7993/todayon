@@ -9,7 +9,7 @@ const HeaderWrap = styled.div`
   align-items: center;
   justify-content: space-between;
   h3 {
-    font-size: 18px;
+    font-size: 22px;
     text-align: center;
     flex: 1;
   }

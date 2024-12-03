@@ -62,7 +62,7 @@ const ToDoList = () => {
   return (
     <Wrapper>
       <Header text="To-Do" />
-      <div style={{ padding: "15px 0" }}>
+      <div style={{ padding: "30px 0" }}>
         <div style={{ display: "flex", marginBottom: "16px" }}>
           <input
             type="text"

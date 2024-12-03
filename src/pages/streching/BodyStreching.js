@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const PoseImg = styled.div`
-  margin-top: 50px;
+  margin: 50px 0 20px 0;
   img {
     width: 337px;
     height: 218px;
@@ -17,7 +17,6 @@ const TextBox = styled.div`
   justify-content: center;
   align-items: center;
   font-family: "IBM Plex Sans KR", sans-serif;
-
   font-style: normal;
   h3 {
     font-size: 22px;
