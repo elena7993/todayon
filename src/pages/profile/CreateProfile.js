@@ -62,7 +62,7 @@ const CreateProfile = ({ text, BackBtn }) => {
         </InputField>
         <InputField>
           <div className="h3">Birth Date</div>
-          <input type="date" />
+          <input type="date" placeholder="DD/MM/YYYY" />
         </InputField>
       </UserInfo>
       <BtnWrap>

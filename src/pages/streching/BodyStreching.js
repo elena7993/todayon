@@ -16,15 +16,22 @@ const TextBox = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-family: "IBM Plex Sans KR", sans-serif;
+
+  font-style: normal;
   h3 {
     font-size: 22px;
+    font-weight: 600;
   }
 
   .desc {
     margin: 20px 0;
+    opacity: 0.7;
   }
 
   .desc_2 {
+    opacity: 0.7;
+    margin-bottom: 30px;
   }
 `;
 
@@ -52,7 +59,7 @@ const BodyStreching = ({ text, BackBtn }) => {
         <p className="desc_2">{stretching.desc_2}</p>
       </TextBox>
       <BtnWrap>
-        <Button onClick={() => navigate("/main")}>Complited</Button>
+        <Button to={"/main"}>Complited</Button>
       </BtnWrap>
     </Wrapper>
   );
