@@ -2,8 +2,8 @@ import styled from "styled-components";
 import Header from "../../components/Header";
 import Wrapper from "../../components/Wrapper";
 import Button from "../../components/Button";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 const InputFeild = styled.div`
   margin-bottom: 5px;
@@ -58,13 +58,29 @@ const NoteDetail = () => {
   const [content, setContent] = useState("");
   const navigate = useNavigate();
 
+  const { id } = useParams(); // URL의 ID 가져오기
+  // console.log("Note ID:", id);
+
+  useEffect(() => {
+    const notes = JSON.parse(localStorage.getItem("notes")) || [];
+    const currentNote = notes.find((note) => note.id === parseInt(id)); // ID로 검색
+    if (currentNote) {
+      setTitle(currentNote.title);
+      setContent(currentNote.content);
+    }
+  }, [id]);
+
   const handleSaveNote = () => {
     const notes = JSON.parse(localStorage.getItem("notes")) || [];
-    const newNote = { title, content, date: new Date().toLocaleString() };
-    notes.push(newNote);
-    localStorage.setItem("notes", JSON.stringify(notes));
+    const updatedNotes = notes.map((note) =>
+      note.id === parseInt(id)
+        ? { ...note, title, content, date: new Date().toLocaleString() }
+        : note
+    );
+
+    localStorage.setItem("notes", JSON.stringify(updatedNotes));
+    // 수정된 데이터 저장
     navigate("/notes"); // MyNote 페이지로 이동
-    console.log("클릭클릭");
   };
 
   return (
