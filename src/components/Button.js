@@ -16,10 +16,13 @@ const StyledButton = styled.div`
   cursor: pointer;
 `;
 
-const Button = ({ children, to }) => {
+const Button = ({ children, to, onClick }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
+    if (onClick) {
+      onClick();
+    }
     if (to) {
       navigate(to);
     }
