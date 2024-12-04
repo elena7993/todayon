@@ -17,10 +17,12 @@ const ToDoList = () => {
 
   useEffect(() => {
     const storedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    console.log("로컬스토리지에서 가져온 tasks:", storedTasks);
     setTasks(storedTasks);
   }, []);
 
   useEffect(() => {
+    console.log("업데이트된 tasks:", tasks);
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
 

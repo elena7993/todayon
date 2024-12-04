@@ -58,29 +58,44 @@ const NoteDetail = () => {
   const [content, setContent] = useState("");
   const navigate = useNavigate();
 
-  const { id } = useParams(); // URL의 ID 가져오기
-  // console.log("Note ID:", id);
+  const { id } = useParams();
+  // URL의 ID 가져오기
 
   useEffect(() => {
-    const notes = JSON.parse(localStorage.getItem("notes")) || [];
-    const currentNote = notes.find((note) => note.id === parseInt(id)); // ID로 검색
-    if (currentNote) {
-      setTitle(currentNote.title);
-      setContent(currentNote.content);
+    if (id) {
+      const notes = JSON.parse(localStorage.getItem("notes")) || [];
+      const currentNote = notes.find((note) => note.id === parseInt(id));
+      if (currentNote) {
+        setTitle(currentNote.title);
+        setContent(currentNote.content);
+      }
+    } else {
+      setTitle(""); // 초기 상태 비우기
+      setContent("");
     }
   }, [id]);
 
   const handleSaveNote = () => {
     const notes = JSON.parse(localStorage.getItem("notes")) || [];
-    const updatedNotes = notes.map((note) =>
-      note.id === parseInt(id)
-        ? { ...note, title, content, date: new Date().toLocaleString() }
-        : note
-    );
 
-    localStorage.setItem("notes", JSON.stringify(updatedNotes));
-    // 수정된 데이터 저장
-    navigate("/notes"); // MyNote 페이지로 이동
+    if (id) {
+      const updatedNotes = notes.map((note) =>
+        note.id === parseInt(id)
+          ? { ...note, title, content, date: new Date().toLocaleString() }
+          : note
+      );
+      localStorage.setItem("notes", JSON.stringify(updatedNotes));
+    } else {
+      const newNote = {
+        id: Date.now(),
+        title,
+        content,
+        date: new Date().toLocaleString(),
+      };
+      notes.push(newNote);
+      localStorage.setItem("notes", JSON.stringify(notes));
+    }
+    navigate("/notes");
   };
 
   return (
@@ -90,14 +105,14 @@ const NoteDetail = () => {
         <input
           type="text"
           placeholder="Title"
-          value={title}
+          value={title || ""}
           onChange={(e) => setTitle(e.target.value)}
         />
       </InputFeild>
       <NoteFeild>
         <textarea
           placeholder="Note"
-          value={content}
+          value={content || ""}
           onChange={(e) => setContent(e.target.value)}
         ></textarea>
       </NoteFeild>

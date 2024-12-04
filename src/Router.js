@@ -18,7 +18,7 @@ const Router = () => {
         <Route path="/todo" element={<ToDoList />} />
         <Route path="/stretching" element={<BodyStreching />} />
         <Route path="/notes" element={<MyNote />} />
-        <Route path="/notes-detail" element={<NoteDetail />} />
+        <Route path="/notes-detail/:id?" element={<NoteDetail />} />
       </Routes>
     </HashRouter>
   );

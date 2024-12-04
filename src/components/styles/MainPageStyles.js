@@ -70,7 +70,27 @@ export const NoteItem = styled.div`
   border-radius: 10px;
   background-color: #fff;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
+  /* cursor: pointer; */
+  h3 {
+    font-size: 14px;
+    font-weight: 500;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-bottom: 10px;
+  }
+  p {
+    font-size: 12px;
+    color: #666;
+    line-height: 1.4;
+    letter-spacing: 0.1px;
+    margin: 0;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* 내용은 최대 2줄로 제한 */
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+  }
 
   &:hover {
     transform: scale(1.02);
@@ -81,13 +101,13 @@ export const NoteItem = styled.div`
 // 빈 상태 메시지 스타일
 export const EmptyState = styled.div`
   text-align: center;
-  font-size: 16px;
-  margin: 20px 0;
+  font-size: 20px;
+  margin: 50px 0;
 
   button {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    border-radius: 15px;
     background-color: black;
     color: white;
     font-size: 24px;
@@ -96,5 +116,6 @@ export const EmptyState = styled.div`
     align-items: center;
     margin: 0 auto;
     cursor: pointer;
+    margin-bottom: 20px;
   }
 `;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   TodoSection,
   TodoItem,
@@ -143,14 +143,17 @@ const stretchingData = [
 ];
 
 const MainPage = () => {
-  const [todos, setTodos] = useState(["Buy groceries", "Clean the house"]);
-  const [notes, setNotes] = useState([
-    "Remember to call mom",
-    "Finish the project",
-    "Read a book",
-  ]);
-
+  const [todos, setTodos] = useState([]);
+  const [notes, setNotes] = useState([]);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // localStorage에서 노트 데이터 가져오기
+    const storedNotes = JSON.parse(localStorage.getItem("notes")) || [];
+    setNotes(storedNotes);
+    const storedTodos = JSON.parse(localStorage.getItem("tasks")) || [];
+    setTodos(storedTodos);
+  }, []);
 
   const handleStartStretching = () => {
     const randomIndex = Math.floor(Math.random() * stretchingData.length);
@@ -174,15 +177,23 @@ const MainPage = () => {
           {todos.length > 0 ? (
             todos.map((todo, index) => (
               <TodoItem key={index}>
-                {todo}
-                <span>
-                  <FontAwesomeIcon icon={faEllipsisVertical}></FontAwesomeIcon>
+                <span
+                  style={{
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    whiteSpace: "nowrap",
+                    display: "block",
+                    maxWidth: "90%",
+                    letterSpacing: "-0.8px",
+                  }}
+                >
+                  {todo.text}
                 </span>
               </TodoItem>
             ))
           ) : (
             <EmptyState>
-              <button>+</button>
+              <button onClick={() => navigate("/todo")}>+</button>
               <p>Let's make the list for today!</p>
             </EmptyState>
           )}
@@ -212,13 +223,17 @@ const MainPage = () => {
           </div>
           {notes.length > 0 ? (
             <NoteGrid>
-              {notes.map((note, index) => (
-                <NoteItem key={index}>{note}</NoteItem>
+              {notes.map((note) => (
+                // <NoteItem key={note.id}>{note}</NoteItem>
+                <NoteItem key={note.id}>
+                  <h3>{note.title}</h3>
+                  <p>{note.content}</p>
+                </NoteItem>
               ))}
             </NoteGrid>
           ) : (
             <EmptyState>
-              <button>+</button>
+              <button onClick={() => navigate("/notes-detail")}>+</button>
               <p>Let's make a new note!</p>
             </EmptyState>
           )}
