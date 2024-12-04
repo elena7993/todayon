@@ -5,6 +5,8 @@ import MainPage from "./pages/main/MainPage";
 import ToDoList from "./pages/todo/ToDoList";
 import BodyStreching from "./pages/streching/BodyStreching";
 import MyNote from "./pages/note/MyNote";
+import NoteDetail from "./pages/note/NoteDetail";
+// import NoteDetail from "./pages/note/MyNote";
 
 const Router = () => {
   return (
@@ -16,6 +18,7 @@ const Router = () => {
         <Route path="/todo" element={<ToDoList />} />
         <Route path="/stretching" element={<BodyStreching />} />
         <Route path="/notes" element={<MyNote />} />
+        <Route path="/notes-detail" element={<NoteDetail />} />
       </Routes>
     </HashRouter>
   );
