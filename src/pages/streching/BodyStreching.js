@@ -19,18 +19,18 @@ const TextBox = styled.div`
   font-family: "IBM Plex Sans KR", sans-serif;
   font-style: normal;
   h3 {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 600;
   }
 
   .desc {
-    margin: 20px 0;
+    margin: 26px 0;
     opacity: 0.7;
   }
 
   .desc_2 {
     opacity: 0.7;
-    margin-bottom: 30px;
+    margin-bottom: 34px;
   }
 `;
 

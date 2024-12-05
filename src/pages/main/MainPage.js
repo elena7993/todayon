@@ -10,8 +10,8 @@ import {
 import Wrapper from "../../components/Wrapper";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { FaArrowRightLong } from "react-icons/fa6";
 import { BsArrowRight } from "react-icons/bs";
+import { Avatar } from "evergreen-ui";
 
 const HeaderMain = styled.div`
   width: 100%;
@@ -21,16 +21,11 @@ const HeaderMain = styled.div`
   h3 {
     font-size: 18px;
   }
-  span {
-    width: 26px;
-    height: 26px;
-    background-color: lightblue;
-    border-radius: 50%;
-  }
 `;
 
 const GoStretching = styled.div`
   position: relative;
+  margin: 15px 0;
   h2 {
     font-size: 20px;
     font-weight: 400;
@@ -152,6 +147,8 @@ const MainPage = () => {
   const [notes, setNotes] = useState([]);
   const navigate = useNavigate();
 
+  const username = localStorage.getItem("username") || "Guest";
+
   useEffect(() => {
     // localStorage에서 노트 데이터 가져오기
     const storedNotes = JSON.parse(localStorage.getItem("notes")) || [];
@@ -170,8 +167,8 @@ const MainPage = () => {
     <div>
       <Wrapper>
         <HeaderMain>
-          <h3>Hi, Elena Lee</h3>
-          <span></span>
+          <h3>Hi, {username}</h3>
+          <Avatar name={username} size={35} />
         </HeaderMain>
         <TodoSection>
           <div className="textWrap">
@@ -180,7 +177,7 @@ const MainPage = () => {
           </div>
 
           {todos.length > 0 ? (
-            todos.map((todo, index) => (
+            todos.slice(0, 3).map((todo, index) => (
               <TodoItem key={index}>
                 <span
                   style={{
@@ -234,7 +231,7 @@ const MainPage = () => {
           </div>
           {notes.length > 0 ? (
             <NoteGrid>
-              {notes.map((note) => (
+              {notes.slice(0, 2).map((note) => (
                 // <NoteItem key={note.id}>{note}</NoteItem>
                 <NoteItem key={note.id}>
                   <h3>{note.title}</h3>

@@ -18,7 +18,7 @@ ${reset}
 body{
   color: #000;
   background-color: #f3f6f8;
-  letter-spacing: -1px;
+  letter-spacing: 0.1px;
   font-family: 'Barlow Condensed', sans-serif;
   font-weight: 300;
   font-style: normal;
