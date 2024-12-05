@@ -2,14 +2,14 @@ import Wrapper from "../../components/Wrapper";
 import Header from "../../components/Header";
 import Button from "../../components/Button";
 import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { PiUserCircleThin } from "react-icons/pi";
+import { RxPlus } from "react-icons/rx";
 
-const ProfileImg = styled.div`
-  margin: 50px 0;
-`;
+// const ProfileImg = styled.div`
+//   margin: 50px 0;
+// `;
 const UserInfo = styled.div`
-  margin: 30px 0;
+  margin: 100px 0;
 `;
 const InputField = styled.div`
   .h3 {
@@ -38,19 +38,25 @@ const CreateProfile = ({ text, BackBtn }) => {
   return (
     <Wrapper>
       <Header text="Create Profile" />
-      <ProfileImg>
-        <FontAwesomeIcon
-          icon={faUser}
+      {/* <ProfileImg
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          position: "relative",
+        }}
+      >
+        <PiUserCircleThin style={{ fontSize: "80px" }} />
+        <RxPlus
           style={{
-            width: "50px",
-            height: "50px",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            margin: "0 auto",
+            fontSize: "20px",
+            position: "absolute",
+            bottom: "5px",
+            right: "127px",
+            cursor: "pointer",
           }}
-        ></FontAwesomeIcon>
-      </ProfileImg>
+        />
+      </ProfileImg> */}
       <UserInfo>
         <InputField>
           <div className="h3">Username</div>
