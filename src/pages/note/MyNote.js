@@ -2,11 +2,17 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation, useParams } from "react-router-dom";
 import Header from "../../components/Header";
 import Wrapper from "../../components/Wrapper";
-import { Tooltip, IconButton, PlusIcon } from "evergreen-ui";
+import {
+  Tooltip,
+  IconButton,
+  PlusIcon,
+  Popover,
+  Menu,
+  Position,
+} from "evergreen-ui";
 import styled from "styled-components";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { LuTrash2, LuPencilLine } from "react-icons/lu";
 
 const NoteGrid = styled.div`
   display: grid;
@@ -28,11 +34,11 @@ const NoteCard = styled.div`
   h3 {
     margin: 0 0 8px;
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 600;
   }
 
   p {
-    font-size: 14px;
+    font-size: 12px;
     margin: 0;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -41,6 +47,7 @@ const NoteCard = styled.div`
     -webkit-box-orient: vertical;
     line-height: 16px;
     letter-spacing: 0.1px;
+    color: #888;
   }
 
   span {
@@ -48,16 +55,19 @@ const NoteCard = styled.div`
     margin-top: 14px;
     font-size: 14px;
     letter-spacing: -0.4px;
-    color: #666;
+    color: #888;
   }
+`;
+
+const StyledMenu = styled(Menu)`
+  /* .ub-min-w_200px {
+    min-width: 120px !important;
+  } */
 `;
 
 const MyNote = () => {
   const navigate = useNavigate();
   const [notes, setNotes] = useState([]);
-  const [activeMenu, setActiveMenu] = useState(null);
-  const [menuPosition, setMenuPosition] = useState({ top: 0, left: 0 });
-
   const location = useLocation();
   // 현재 경로를 가져옴
 
@@ -65,6 +75,7 @@ const MyNote = () => {
 
   const { id } = useParams();
   const [note, setNote] = useState(null);
+  console.log(note);
 
   useEffect(() => {
     const notes = JSON.parse(localStorage.getItem("notes")) || [];
@@ -82,6 +93,10 @@ const MyNote = () => {
     navigate("/notes-detail");
   };
 
+  const handleView = (id) => {
+    navigate(`/notes-detail/${id}`);
+  };
+
   const handleEdit = (id) => {
     console.log("Edit ID:", id);
     navigate(`/notes-detail/${id}`);
@@ -95,15 +110,6 @@ const MyNote = () => {
 
       localStorage.setItem("notes", JSON.stringify(updatedNotes)); //
     }
-  };
-
-  const handleMenuOpen = (event, noteId) => {
-    const rect = event.target.getBoundingClientRect();
-
-    setMenuPosition({ top: rect.top - 50, left: rect.left - 320 });
-
-    setActiveMenu(noteId);
-    // 열릴 메뉴의 노트 ID 설정
   };
 
   return (
@@ -124,62 +130,35 @@ const MyNote = () => {
                 style={{ display: "flex", justifyContent: "space-between" }}
               >
                 <h3>{note.title}</h3>
-                <FontAwesomeIcon
-                  icon={faEllipsisVertical}
-                  style={{ fontSize: "12px", cursor: "pointer" }}
-                  onClick={(e) => handleMenuOpen(e, note.id)}
-                />
-                {activeMenu === note.id && (
-                  <div
-                    style={{
-                      position: "absolute",
-                      top: `${menuPosition.top}px`,
-                      left: `${menuPosition.left}px`,
-                      backgroundColor: "#fff",
-                      boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
-                      borderRadius: "10px",
-                      // padding: "px 0",
-                      zIndex: 10,
-                    }}
-                  >
-                    <div
-                      style={{
-                        padding: "0 10px 6px 10px",
-                        cursor: "pointer",
-                      }}
-                      onClick={() => handleEdit(note.id)} // 수정
-                    >
-                      <span
-                        style={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                          gap: "2px",
-                        }}
-                      >
-                        <LuPencilLine />
-                        수정
-                      </span>
-                    </div>
-                    <div
-                      style={{
-                        padding: "0 10px 8px 10px",
-                        cursor: "pointer",
-                      }}
-                      onClick={() => handleDelete(note.id)}
-                    >
-                      <span
-                        style={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                          color: "tomato",
-                        }}
-                      >
-                        <LuTrash2 />
-                        삭제
-                      </span>
-                    </div>
-                  </div>
-                )}
+                <Popover
+                  position={Position.BOTTOM_LEFT}
+                  content={
+                    <StyledMenu>
+                      <Menu.Group>
+                        <Menu.Item onSelect={() => handleView(note.id)}>
+                          보기...
+                        </Menu.Item>
+                        <Menu.Item onSelect={() => handleEdit(note.id)}>
+                          수정...
+                        </Menu.Item>
+                      </Menu.Group>
+                      <Menu.Divider />
+                      <Menu.Group>
+                        <Menu.Item
+                          onSelect={() => handleDelete(note.id)}
+                          intent="danger"
+                        >
+                          삭제...
+                        </Menu.Item>
+                      </Menu.Group>
+                    </StyledMenu>
+                  }
+                >
+                  <FontAwesomeIcon
+                    icon={faEllipsisVertical}
+                    style={{ fontSize: "16px", cursor: "pointer" }}
+                  />
+                </Popover>
               </div>
               <p>{note.content}</p>
               <span>{note.date}</span>

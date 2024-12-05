@@ -13,11 +13,15 @@ const InputFeild = styled.div`
     border: none;
     border-bottom: 1px solid #ddd;
     font-size: 18px;
+    font-family: "IBM Plex Sans KR", serif;
+    font-weight: 300;
+    font-style: normal;
     color: #333;
-    padding: 4px 0;
+    padding: 8px 0;
     outline: none;
     background: transparent;
     margin-top: 20px;
+    letter-spacing: 1px;
 
     &::placeholder {
       color: #ccc;
@@ -32,9 +36,12 @@ const NoteFeild = styled.div`
     width: 100%;
     height: 400px;
     border: none;
-    border-bottom: 1px solid #ddd;
+    /* border-bottom: 1px solid #ddd; */
+    font-family: "IBM Plex Sans KR", serif;
+    font-weight: 300;
+    font-style: normal;
     font-size: 16px;
-    color: #333;
+    color: #555;
     padding: 8px 0;
     outline: none;
     resize: none;

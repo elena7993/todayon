@@ -10,19 +10,23 @@ import {
 } from "evergreen-ui";
 
 const ToDoList = () => {
-  const [tasks, setTasks] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [isEditing, setIsEditing] = useState(false);
   const [editIndex, setEditIndex] = useState(null);
 
-  useEffect(() => {
-    const storedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
-    console.log("로컬스토리지에서 가져온 tasks:", storedTasks);
-    setTasks(storedTasks);
-  }, []);
+  // useEffect(() => {
+  //   const storedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
+  //   // console.log(storedTasks);
+  //   setTasks(storedTasks);
+  // }, []);
+
+  const [tasks, setTasks] = useState(() => {
+    const storedTasks = localStorage.getItem("tasks");
+    return storedTasks ? JSON.parse(storedTasks) : [];
+  });
 
   useEffect(() => {
-    console.log("업데이트된 tasks:", tasks);
+    // console.log("업데이트된 tasks:", tasks);
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
 

@@ -6,7 +6,7 @@ const Wrap = styled.div`
   max-width: 375px;
   height: 100vh;
   /* max-height: 812px; */
-  padding: 50px ${mainStyle.Padding_main};
+  padding: 40px ${mainStyle.Padding_main};
   margin: 0 auto;
   border: 1px solid #dbdbdb;
 `;

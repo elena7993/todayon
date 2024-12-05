@@ -9,9 +9,9 @@ import {
 } from "../../components/styles/MainPageStyles";
 import Wrapper from "../../components/Wrapper";
 import styled from "styled-components";
-import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
+import { FaArrowRightLong } from "react-icons/fa6";
+import { BsArrowRight } from "react-icons/bs";
 
 const HeaderMain = styled.div`
   width: 100%;
@@ -39,7 +39,12 @@ const GoStretching = styled.div`
   .button {
     width: 333px;
     height: 70px;
-    background-color: lightgray;
+    background: linear-gradient(
+      121deg,
+      rgba(249, 235, 194, 1) 0%,
+      rgba(255, 247, 224, 1) 77%,
+      rgba(249, 231, 179, 1) 100%
+    );
     border-radius: 15px;
     display: flex;
     align-items: center;
@@ -205,6 +210,12 @@ const MainPage = () => {
           <h2>To Strech Body</h2>
           <div className="button" onClick={handleStartStretching}>
             <p>Take a moment for your body!</p>
+            <BsArrowRight
+              style={{
+                fontSize: "16px",
+                marginTop: "6px",
+              }}
+            />
 
             <div className="anime">
               <img

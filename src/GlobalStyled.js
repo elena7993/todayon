@@ -11,6 +11,10 @@ ${reset}
 *{box-sizing: border-box;
 }
 
+.ub-min-w_200px {
+    min-width: 80px !important;
+  }
+
 body{
   color: #000;
   background-color: #f3f6f8;

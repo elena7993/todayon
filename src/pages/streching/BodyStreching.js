@@ -2,7 +2,7 @@ import Wrapper from "../../components/Wrapper";
 import Header from "../../components/Header";
 import Button from "../../components/Button";
 import styled from "styled-components";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const PoseImg = styled.div`
   margin: 50px 0 20px 0;
@@ -42,7 +42,7 @@ const BtnWrap = styled.div`
 
 const BodyStreching = ({ text, BackBtn }) => {
   const location = useLocation();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const stretching = location.state;
 
