@@ -5,9 +5,6 @@ import styled from "styled-components";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-// const ProfileImg = styled.div`
-//   margin: 50px 0;
-// `;
 const UserInfo = styled.div`
   margin: 100px 0;
 `;
@@ -19,7 +16,7 @@ const InputField = styled.div`
 
   input {
     all: unset;
-    width: 325px;
+    width: 300px;
     height: 55px;
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 20px;

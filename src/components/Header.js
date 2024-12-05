@@ -19,7 +19,12 @@ const Header = ({ text }) => {
   const navigate = useNavigate();
 
   const BackBtn = () => {
-    navigate(-1);
+    if (window.location.pathname.startsWith("/notes-detail")) {
+      navigate("/notes");
+      // 노트 디테일 페이지인 경우 노트 리스트로 이동!
+    } else {
+      navigate(-1);
+    }
   };
 
   return (

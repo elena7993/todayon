@@ -66,7 +66,7 @@ export const NoteGrid = styled.div`
 `;
 
 export const NoteItem = styled.div`
-  width: 160px;
+  width: 154px;
   height: 120px;
   padding: 10px;
   border: 1px solid #dbdbdb;
