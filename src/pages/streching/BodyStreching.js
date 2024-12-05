@@ -1,8 +1,9 @@
 import Wrapper from "../../components/Wrapper";
 import Header from "../../components/Header";
-import Button from "../../components/Button";
 import styled from "styled-components";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import stretchingData from "./stretchingData";
 
 const PoseImg = styled.div`
   margin: 50px 0 20px 0;
@@ -36,29 +37,51 @@ const TextBox = styled.div`
 
 const BtnWrap = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+`;
+
+const Button = styled.button`
+  width: 90px;
+  height: 36px;
+  background-color: #000;
+  border-radius: 15px;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
 `;
 
 const BodyStreching = ({ text, BackBtn }) => {
   const location = useLocation();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  const stretching = location.state;
+  // const stretching = location.state;
+  const { randomStretch } = location.state;
+  const [currentStretching, setCurrentStretching] = useState(randomStretch);
+
+  const handleNext = () => {
+    const randomIndex = Math.floor(Math.random() * stretchingData.length);
+    const randomStretch = stretchingData[randomIndex];
+    setCurrentStretching(randomStretch);
+  };
 
   return (
     <Wrapper>
       <Header text="Body Streching" />
       <PoseImg>
-        <img src={stretching.img} alt={stretching.img} />
+        <img src={currentStretching.img} alt={currentStretching.img} />
       </PoseImg>
       <TextBox>
-        <h3>{stretching.title}</h3>
+        <h3>{currentStretching.title}</h3>
+        <p className="desc">{currentStretching.desc}</p>
+        <p className="desc_2">{currentStretching.desc_2}</p>
+        {/* <h3>{stretching.title}</h3>
         <p className="desc">{stretching.desc}</p>
-        <p className="desc_2">{stretching.desc_2}</p>
+        <p className="desc_2">{stretching.desc_2}</p> */}
       </TextBox>
       <BtnWrap>
-        <Button to={"/main"}>Complited</Button>
+        <Button onClick={() => navigate("/main")}>Done</Button>
+        <Button onClick={handleNext}>Next</Button>
       </BtnWrap>
     </Wrapper>
   );
