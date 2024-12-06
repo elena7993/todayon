@@ -59,12 +59,6 @@ const NoteCard = styled.div`
   }
 `;
 
-const StyledMenu = styled(Menu)`
-  /* .ub-min-w_200px {
-    min-width: 120px !important;
-  } */
-`;
-
 const MyNote = () => {
   const navigate = useNavigate();
   const [notes, setNotes] = useState([]);
@@ -114,7 +108,7 @@ const MyNote = () => {
 
   return (
     <Wrapper>
-      <Header text="My Notes" />
+      <Header text="My Notes" onClick={() => navigate("/main")} />
       <div
         style={{
           position: "relative",
@@ -133,7 +127,7 @@ const MyNote = () => {
                 <Popover
                   position={Position.BOTTOM_LEFT}
                   content={
-                    <StyledMenu>
+                    <Menu>
                       <Menu.Group>
                         <Menu.Item onSelect={() => handleView(note.id)}>
                           보기...
@@ -151,7 +145,7 @@ const MyNote = () => {
                           삭제...
                         </Menu.Item>
                       </Menu.Group>
-                    </StyledMenu>
+                    </Menu>
                   }
                 >
                   <FontAwesomeIcon

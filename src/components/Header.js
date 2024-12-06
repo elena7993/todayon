@@ -1,6 +1,6 @@
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const HeaderWrap = styled.div`
@@ -17,15 +17,18 @@ const HeaderWrap = styled.div`
 
 const Header = ({ text }) => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const BackBtn = () => {
-    if (window.location.pathname.startsWith("/notes-detail")) {
-      navigate("/notes");
-      // 노트 디테일 페이지인 경우 노트 리스트로 이동!
+    if (location.pathname === "/notes") {
+      console.log("dd");
+      navigate("/main", { replace: true });
     } else {
       navigate(-1);
     }
   };
+
+  // *추천: 헤더가 경로 기반 뒤로가기나 네비게이션 로직을 담당하는 경우.
 
   return (
     <HeaderWrap>
