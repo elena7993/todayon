@@ -29,13 +29,14 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "prodeploy": "npm run build",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "homepage": "https://elena7993.github.io/todayon/#/",
   "eslintConfig": {
     "extends": [
       "react-app",
