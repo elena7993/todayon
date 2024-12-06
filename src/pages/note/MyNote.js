@@ -19,7 +19,6 @@ const NoteGrid = styled.div`
   grid-template-columns: repeat(2, 1fr);
   row-gap: 15px;
   column-gap: 20px;
-  /* padding: 8px; */
 `;
 
 const NoteCard = styled.div`
