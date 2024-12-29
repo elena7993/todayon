@@ -4,12 +4,13 @@ import Button from "../../components/Button";
 import styled from "styled-components";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
 
 const UserInfo = styled.div`
   margin: 100px 0;
 `;
 const InputField = styled.div`
-  .h3 {
+  h3 {
     font-size: 20px;
     margin-bottom: 5px;
   }
@@ -32,41 +33,86 @@ const BtnWrap = styled.div`
 `;
 
 const CreateProfile = ({ text, BackBtn }) => {
-  const [username, setUsername] = useState("");
+  // const [username, setUsername] = useState("");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid },
+  } = useForm({
+    mode: "onChange",
+  });
+
   const navigate = useNavigate();
 
-  const handleSave = () => {
-    localStorage.setItem("username", username);
+  const onSubmit = (data) => {
+    localStorage.setItem("username", data.username);
+    localStorage.setItem("email", data.email);
+    localStorage.setItem("birthDate", data.birthDate);
     navigate("/main");
   };
 
   return (
     <Wrapper>
       <Header text="Create Profile" />
-      <UserInfo>
-        <InputField>
-          <div className="h3">Username</div>
-          <input
-            type="text"
-            placeholder="Enter your name"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </InputField>
-        <InputField>
-          <div className="h3">email</div>
-          <input type="email" placeholder="Enter your email" />
-        </InputField>
-        <InputField>
-          <div className="h3">Birth Date</div>
-          <input type="date" placeholder="DD/MM/YYYY" />
-        </InputField>
-      </UserInfo>
-      <BtnWrap>
-        <Button to="/main" onClick={handleSave}>
-          Continue
-        </Button>
-      </BtnWrap>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <UserInfo>
+          <InputField>
+            <h3>Username</h3>
+            <input
+              type="text"
+              placeholder="Enter your name"
+              {...register("username", {
+                required: "Username is required",
+              })}
+            />
+            {errors.username && (
+              <p style={{ color: "tomato" }}>{errors.username.message}</p>
+            )}
+          </InputField>
+
+          <InputField>
+            <h3>email</h3>
+            <input
+              type="email"
+              placeholder="Enter your email"
+              {...register("email", {
+                required: "Email is required",
+                pattern: {
+                  value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                  message: "Invalid email format",
+                },
+              })}
+            />
+            {errors.email && (
+              <p style={{ color: "tomato" }}>{errors.email.message}</p>
+            )}
+          </InputField>
+
+          <InputField>
+            <h3>Birth Date</h3>
+            <input
+              type="date"
+              placeholder="DD/MM/YYYY"
+              {...register("birthDate", { required: "Birth Date is required" })}
+            />
+            {errors.birthDate && (
+              <p style={{ color: "tomato" }}>{errors.birthDate.message}</p>
+            )}
+          </InputField>
+        </UserInfo>
+
+        <BtnWrap>
+          <Button
+            type="submit"
+            noBg={!isValid}
+            addColor={!isValid}
+            addBorder={!isValid}
+            disabled={!isValid}
+          >
+            Continue
+          </Button>
+        </BtnWrap>
+      </form>
     </Wrapper>
   );
 };

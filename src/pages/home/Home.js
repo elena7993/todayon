@@ -33,7 +33,7 @@ const Home = () => {
     <Wrapper>
       <InnerWrap>
         <Title>
-          <span>오늘,</span> ON
+          <span>Today,</span> ON
         </Title>
         {/* <img src="/homebg.png" alt="homebg" /> */}
         <div className="videoWrap" style={{ width: "300px", height: "300px" }}>
@@ -46,7 +46,9 @@ const Home = () => {
           ></video>
         </div>
         <div className="btn">
-          <Button to="/main">Get Started</Button>
+          <Button to="/main" noBg addColor addBorder>
+            Get Started
+          </Button>
           <Button to="/profile">Create Profile</Button>
         </div>
       </InnerWrap>

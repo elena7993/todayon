@@ -4,8 +4,11 @@ import styled from "styled-components";
 const StyledButton = styled.div`
   width: 282px;
   height: 60px;
-  background-color: black;
-  color: #fff;
+  /* background-color: black; */
+  background-color: ${(props) => (props.$noBg ? "transparent" : "#000")};
+  /* color: #fff; */
+  color: ${(props) => (props.$addColor ? "#000" : "#fff")};
+  border: ${(props) => (props.$addBorder ? "1px solid #000" : "none")};
   font-size: 20px;
   font-weight: 400;
   border-radius: 20px;
@@ -16,7 +19,15 @@ const StyledButton = styled.div`
   cursor: pointer;
 `;
 
-const Button = ({ children, to, onClick }) => {
+const Button = ({
+  children,
+  to,
+  onClick,
+  noBg,
+  addColor,
+  addBorder,
+  ...RestProps
+}) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -28,7 +39,17 @@ const Button = ({ children, to, onClick }) => {
     }
   };
 
-  return <StyledButton onClick={handleClick}>{children}</StyledButton>;
+  return (
+    <StyledButton
+      $noBg={noBg}
+      $addColor={addColor}
+      $addBorder={addBorder}
+      {...RestProps}
+      onClick={handleClick}
+    >
+      {children}
+    </StyledButton>
+  );
 };
 
 export default Button;
