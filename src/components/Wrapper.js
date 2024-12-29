@@ -5,7 +5,7 @@ const Wrap = styled.div`
   width: 100%;
   max-width: 375px;
   height: 100vh;
-  padding: 40px ${mainStyle.Padding_main};
+  padding: 20px ${mainStyle.Padding_main};
   margin: 0 auto;
   border: 1px solid #dbdbdb;
 `;

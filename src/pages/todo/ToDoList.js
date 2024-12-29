@@ -14,12 +14,6 @@ const ToDoList = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [editIndex, setEditIndex] = useState(null);
 
-  // useEffect(() => {
-  //   const storedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
-  //   // console.log(storedTasks);
-  //   setTasks(storedTasks);
-  // }, []);
-
   const [tasks, setTasks] = useState(() => {
     const storedTasks = localStorage.getItem("tasks");
     return storedTasks ? JSON.parse(storedTasks) : [];

@@ -45,11 +45,14 @@ const CreateProfile = ({ text, BackBtn }) => {
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
+    console.log("Form Submitted:", data);
     localStorage.setItem("username", data.username);
     localStorage.setItem("email", data.email);
     localStorage.setItem("birthDate", data.birthDate);
     navigate("/main");
   };
+
+  console.log("isValid:", isValid);
 
   return (
     <Wrapper>
@@ -108,6 +111,7 @@ const CreateProfile = ({ text, BackBtn }) => {
             addColor={!isValid}
             addBorder={!isValid}
             disabled={!isValid}
+            onClick={() => handleSubmit(onSubmit)()}
           >
             Continue
           </Button>

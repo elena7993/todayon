@@ -13,14 +13,17 @@ import { useNavigate } from "react-router-dom";
 import { BsArrowRight } from "react-icons/bs";
 import { Avatar } from "evergreen-ui";
 import stretchingData from "../streching/stretchingData";
+import { FaPlus, FaPlusMinus } from "react-icons/fa6";
 
 const HeaderMain = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border-bottom: 1px solid #dbdbdb;
   h3 {
     font-size: 18px;
+    margin-bottom: 20px;
   }
 `;
 
@@ -29,7 +32,7 @@ const GoStretching = styled.div`
   margin: 15px 0;
   h2 {
     font-size: 20px;
-    font-weight: 400;
+    font-weight: 600;
     margin-bottom: 10px;
   }
   .button {
@@ -86,7 +89,7 @@ const MainPage = () => {
       <Wrapper>
         <HeaderMain>
           <h3>Hi, {username}</h3>
-          <Avatar name={username} size={35} />
+          <Avatar name={username} size={35} marginBottom={20} />
         </HeaderMain>
         <TodoSection>
           <div className="textWrap">
@@ -113,7 +116,9 @@ const MainPage = () => {
             ))
           ) : (
             <EmptyState>
-              <button onClick={() => navigate("/todo")}>+</button>
+              <button onClick={() => navigate("/todo")}>
+                <FaPlus style={{ fontSize: "18px" }} />
+              </button>
               <p>Let's make the list for today!</p>
             </EmptyState>
           )}
@@ -159,7 +164,9 @@ const MainPage = () => {
             </NoteGrid>
           ) : (
             <EmptyState>
-              <button onClick={() => navigate("/notes-detail")}>+</button>
+              <button onClick={() => navigate("/notes-detail")}>
+                <FaPlus style={{ fontSize: "18px" }} />
+              </button>
               <p>Let's make a new note!</p>
             </EmptyState>
           )}

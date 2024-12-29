@@ -7,10 +7,10 @@ export const TodoSection = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 30px 0 10px 0;
+    margin: 15px 0;
     h2 {
       font-size: 20px;
-      font-weight: 400;
+      font-weight: 600;
     }
     p {
       font-size: 16px;
@@ -46,10 +46,10 @@ export const NoteSection = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 30px 0 10px 0;
+    margin: 25px 0 15px 0;
     h2 {
       font-size: 20px;
-      font-weight: 400;
+      font-weight: 600;
     }
     p {
       font-size: 16px;
@@ -79,7 +79,6 @@ export const NoteItem = styled.div`
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    /* margin-bottom: 10px; */
     margin: 6px 0 10px 0;
   }
   p {
@@ -103,10 +102,11 @@ export const EmptyState = styled.div`
   margin: 50px 0;
 
   button {
-    width: 45px;
-    height: 45px;
+    all: unset;
+    width: 40px;
+    height: 40px;
     border-radius: 15px;
-    background-color: black;
+    background-color: #000;
     color: white;
     font-size: 24px;
     display: flex;

@@ -27,11 +27,13 @@ const TextBox = styled.div`
   .desc {
     margin: 26px 0;
     opacity: 0.7;
+    line-height: 1.2;
   }
 
   .desc_2 {
-    opacity: 0.7;
+    opacity: 0.5;
     margin-bottom: 34px;
+    line-height: 1.2;
   }
 `;
 
@@ -75,9 +77,6 @@ const BodyStreching = ({ text, BackBtn }) => {
         <h3>{currentStretching.title}</h3>
         <p className="desc">{currentStretching.desc}</p>
         <p className="desc_2">{currentStretching.desc_2}</p>
-        {/* <h3>{stretching.title}</h3>
-        <p className="desc">{stretching.desc}</p>
-        <p className="desc_2">{stretching.desc_2}</p> */}
       </TextBox>
       <BtnWrap>
         <Button onClick={() => navigate("/main")}>Done</Button>
