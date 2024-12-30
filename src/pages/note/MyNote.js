@@ -52,7 +52,7 @@ const NoteCard = styled.div`
   span {
     display: block;
     margin-top: 14px;
-    font-size: 14px;
+    font-size: 12px;
     letter-spacing: -0.4px;
     color: #888;
   }
@@ -149,7 +149,11 @@ const MyNote = () => {
                 >
                   <FontAwesomeIcon
                     icon={faEllipsisVertical}
-                    style={{ fontSize: "16px", cursor: "pointer" }}
+                    style={{
+                      fontSize: "12px",
+                      cursor: "pointer",
+                      opacity: "0.7",
+                    }}
                   />
                 </Popover>
               </div>

@@ -10,6 +10,7 @@ const UserInfo = styled.div`
   margin: 100px 0;
 `;
 const InputField = styled.div`
+  margin-bottom: 20px;
   h3 {
     font-size: 20px;
     margin-bottom: 5px;
@@ -22,7 +23,11 @@ const InputField = styled.div`
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 20px;
     padding: 0 10px;
-    margin-bottom: 25px;
+    margin-bottom: 5px;
+  }
+  p {
+    color: tomato;
+    margin-left: 10px;
   }
 `;
 
@@ -45,14 +50,12 @@ const CreateProfile = ({ text, BackBtn }) => {
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
-    console.log("Form Submitted:", data);
+    // console.log("Form Submitted:", data);
     localStorage.setItem("username", data.username);
     localStorage.setItem("email", data.email);
     localStorage.setItem("birthDate", data.birthDate);
     navigate("/main");
   };
-
-  console.log("isValid:", isValid);
 
   return (
     <Wrapper>
@@ -68,9 +71,7 @@ const CreateProfile = ({ text, BackBtn }) => {
                 required: "Username is required",
               })}
             />
-            {errors.username && (
-              <p style={{ color: "tomato" }}>{errors.username.message}</p>
-            )}
+            {errors.username && <p>{errors.username.message}</p>}
           </InputField>
 
           <InputField>
@@ -86,9 +87,7 @@ const CreateProfile = ({ text, BackBtn }) => {
                 },
               })}
             />
-            {errors.email && (
-              <p style={{ color: "tomato" }}>{errors.email.message}</p>
-            )}
+            {errors.email && <p>{errors.email.message}</p>}
           </InputField>
 
           <InputField>
@@ -98,9 +97,7 @@ const CreateProfile = ({ text, BackBtn }) => {
               placeholder="DD/MM/YYYY"
               {...register("birthDate", { required: "Birth Date is required" })}
             />
-            {errors.birthDate && (
-              <p style={{ color: "tomato" }}>{errors.birthDate.message}</p>
-            )}
+            {errors.birthDate && <p>{errors.birthDate.message}</p>}
           </InputField>
         </UserInfo>
 

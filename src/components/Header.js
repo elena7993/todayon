@@ -20,8 +20,8 @@ const Header = ({ text }) => {
   const location = useLocation();
 
   const BackBtn = () => {
-    if (location.pathname === "/notes") {
-      console.log("dd");
+    if (location.pathname === "/notes" && location.pathname === "todo") {
+      // console.log("dd");
       navigate("/main", { replace: true });
     } else {
       navigate(-1);

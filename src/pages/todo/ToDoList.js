@@ -36,7 +36,7 @@ const ToDoList = () => {
       setEditIndex(null);
     } else {
       const newTask = { text: inputValue, completed: false };
-      setTasks([...tasks, newTask]);
+      setTasks([newTask, ...tasks]);
     }
 
     setInputValue("");
@@ -64,39 +64,47 @@ const ToDoList = () => {
       <Header text="To-Do" />
       <div style={{ padding: "30px 0" }}>
         <div style={{ display: "flex", marginBottom: "16px" }}>
-          <input
-            type="text"
-            placeholder={
-              isEditing ? "할 일을 수정하세요" : "할 일을 입력하세요"
-            }
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
+          <form
             style={{
-              flex: 1,
-              padding: "8px",
-              border: "1px solid #6E7490",
-              borderRadius: "10px",
+              width: "100%",
+              display: "flex",
+              justifyContent: "space-between",
             }}
-          />
-          <Tooltip
-            content={
-              isEditing ? "수정을 완료하세요!" : "새 할 일을 추가하세요!"
-            }
           >
-            <IconButton
-              icon={isEditing ? EditIcon : PlusIcon}
-              onClick={handleAddTask}
-              appearance="primary"
-              marginLeft={8}
-              intent={isEditing ? "warning" : "none"}
+            <input
+              type="text"
+              placeholder={
+                isEditing ? "할 일을 수정하세요" : "할 일을 입력하세요"
+              }
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
               style={{
-                backgroundColor: isEditing ? "#fff" : "#fff",
-                color: "#000",
-                border: "0.5px solid #6E7490",
+                flex: 1,
+                padding: "8px",
+                border: "1px solid #6E7490",
                 borderRadius: "10px",
               }}
             />
-          </Tooltip>
+            <Tooltip
+              content={
+                isEditing ? "수정을 완료하세요!" : "새 할 일을 추가하세요!"
+              }
+            >
+              <IconButton
+                icon={isEditing ? EditIcon : PlusIcon}
+                onClick={handleAddTask}
+                appearance="primary"
+                marginLeft={8}
+                intent={isEditing ? "warning" : "none"}
+                style={{
+                  backgroundColor: isEditing ? "#fff" : "#fff",
+                  color: "#000",
+                  border: "0.5px solid #6E7490",
+                  borderRadius: "10px",
+                }}
+              />
+            </Tooltip>
+          </form>
         </div>
 
         <ul style={{ listStyle: "none", padding: 0 }}>
