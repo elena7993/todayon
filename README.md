@@ -4,7 +4,7 @@
 
 ### 배포주소
 
-북픽 바로가기: <https://elena7993.github.io/todayon/>
+투데이온 바로가기: <https://elena7993.github.io/todayon/>
 
 ### 1. 앱 이미지
 
